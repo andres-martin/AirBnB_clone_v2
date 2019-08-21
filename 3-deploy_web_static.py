@@ -16,7 +16,7 @@ def do_pack():
     local("mkdir -p versions/")
     try:
         local("tar -cvzf versions/web_static_{}.tgz web_static".format(date))
-        return "/versions/web_static_{}.tgz".format(date)
+        return "versions/web_static_{}.tgz".format(date)
     except Exception:
         return None
 
@@ -44,6 +44,7 @@ def do_deploy(archive_path):
 def deploy():
     ''' creates and distributes an archive to your web servers '''
     path_created_file = do_pack()
+
     if path_created_file is None:
         return False
     return do_deploy(path_created_file)
