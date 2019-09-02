@@ -74,16 +74,16 @@ class Place(BaseModel, Base):
             return(my_list)
 
         @property
-        def get_amenities(self):
+        def amenities(self):
             my_list = []
-            amen_dict = models.storage.all(Amenity)
+            amen_dict = models.storage.all(models.amenity.Amenity)
             amen_ids = amen_dict['amenity_ids']
             for item in amenity_ids:
                 if self.id == item:
                     my_list.append(item)
             return(my_list)
 
-        @get_amenities.setter
+        @amenities.setter
         def amenities(self, obj):
             if isinstance(obj, Amenity):
                 self.amenity_ids.append(obj.id)

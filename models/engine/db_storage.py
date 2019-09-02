@@ -45,8 +45,8 @@ class DBStorage:
         Return:
             returns a dictionary of __object
         """
-        Session = sessionmaker(bind=self.__engine)
-        self.__session = Session()
+        # Session = sessionmaker(bind=self.__engine)
+        # self.__session = Session()
         if cls in dict_classes:
             a = self.__session.query(dict_classes[cls]).all()
             new_dict = {}
@@ -56,8 +56,8 @@ class DBStorage:
                 my_key = my_class + "." + my_id
                 new_dict[my_key] = value
             return (new_dict)
-            self.__session.commit()
-            self.__session.close()
+            # self.__session.commit()
+            # self.__session.close()
         else:
             cls_list = [State, City, User, Review, Place, Amenity]
             list_obj = []
@@ -71,8 +71,8 @@ class DBStorage:
                     my_key = my_class + "." + my_id
                     new_dict[my_key] = item
             return (new_dict)
-            self.__session.commit()
-            self.__session.close()
+            # self.__session.commit()
+            # self.__session.close()
 
     def new(self, obj):
         """sets __object to given obj
@@ -93,7 +93,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         Session = scoped_session(sessionmaker(bind=self.__engine,
                                               expire_on_commit=False))
-        self.__session = Session()
+        self.__session = Session
 
     def delete(self, obj=None):
         """Delete obj from _objects"""
