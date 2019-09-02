@@ -20,10 +20,10 @@ class State(BaseModel, Base):
         name = ""
 
         @property
-        def get_cities(self):
+        def cities(self):
             my_list = []
-            dict_city = models.storage.all(City)
+            dict_city = models.storage.all(models.city.City)
             for key, value in dict_city.items():
-                if self.id == dict_city['state_id']:
+                if self.id == value.state_id:
                     my_list.append(value)
             return(my_list)
