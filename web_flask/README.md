@@ -1,7 +1,8 @@
 # 0x04. AirBnB clone - Web framework
 Resources
 ---------
-- 
+- https://flask.palletsprojects.com/en/1.0.x/quickstart/
+- https://jinja.palletsprojects.com/en/2.9.x/templates/
 
 Tasks
 -----
