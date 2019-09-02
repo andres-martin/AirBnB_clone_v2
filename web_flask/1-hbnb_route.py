@@ -9,10 +9,12 @@ def hello_route():
     ''' renders a message '''
     return "Hello HBNB!"
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     ''' renders a message '''
     return "HBNB"
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
