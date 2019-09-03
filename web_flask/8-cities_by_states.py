@@ -2,7 +2,9 @@
 ''' script that starts a Flask web application '''
 from flask import Flask, escape, render_template
 from models import storage
+from models.state import State
 
+from models.base_model import os_type_storage
 app = Flask(__name__)
 
 
@@ -59,13 +61,25 @@ def number_odd_or_even(n):
     return render_template('6-number_odd_or_even.html', n=n)
 
 
-@app.route('/states_list', strict_slashes=False)
+@app.route('/states_list/', strict_slashes=False)
 def states_list():
     ''' displays a list of all State
         objects present in DBStorage sorted by name
         renders an html template
     '''
-    states_objs = storage.all('State').values()
+    states_objs = storage.all(State).values()
+    return render_template('7-states_list.html', states=states_objs)
+
+
+@app.route('/cities_by_states', strict_slashes=False)
+def cities_by_states():
+    ''' displays a list of all State
+        objects present in DBStorage
+        or FileStorage
+        sorted by name
+        renders an html template
+    '''
+    states_objs = storage.all(State).values()
     return render_template('7-states_list.html', states=states_objs)
 
 

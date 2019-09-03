@@ -8,7 +8,7 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 from models.user import User
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import os_type_storage
 
@@ -91,8 +91,9 @@ class DBStorage:
         """serialize the file path to JSON file path
         """
         Base.metadata.create_all(self.__engine)
-        Session = scoped_session(sessionmaker(bind=self.__engine,
-                                              expire_on_commit=False))
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
+        Session = scoped_session(session_factory)
         self.__session = Session
 
     def delete(self, obj=None):
