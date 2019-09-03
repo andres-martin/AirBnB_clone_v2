@@ -2,9 +2,9 @@
 ''' script that starts a Flask web application '''
 from flask import Flask, escape, render_template
 from models import storage
-from models.state import State
-
 from models.base_model import os_type_storage
+
+from models.state import State
 app = Flask(__name__)
 
 
@@ -67,7 +67,7 @@ def states_list():
         objects present in DBStorage sorted by name
         renders an html template
     '''
-    states_objs = storage.all(State).values()
+    states_objs = storage.all('State').values()
     return render_template('7-states_list.html', states=states_objs)
 
 
@@ -79,8 +79,11 @@ def cities_by_states():
         sorted by name
         renders an html template
     '''
-    states_objs = storage.all(State).values()
-    return render_template('7-states_list.html', states=states_objs)
+    if os_type_storage == 'db':
+        states_objs = storage.all('State').values()
+    else:
+        states_objs = storage.all(State).values()
+    return render_template('8-cities_by_states.html', states=states_objs)
 
 
 @app.teardown_appcontext
