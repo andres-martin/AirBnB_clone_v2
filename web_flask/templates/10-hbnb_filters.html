@@ -40,10 +40,9 @@
             <h4>&nbsp;</h4>
             <div class="popover">
                 <ul>
-                    <li>Internet</li>
-                    <li>TV</li>
-                    <li>Kitchen</li>
-                    <li>Iron</li>
+                    {% for amenity in amenities|sort(attribute='name') %}
+                    <li>{{ amenity.name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
