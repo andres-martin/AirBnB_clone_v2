@@ -2,63 +2,63 @@
 <html lang="en">
 
 <head>
-<link rel="stylesheet" type="text/css" href="styles/4-common.css">
-<link rel="stylesheet" type="text/css" href="styles/3-header.css">
-<link rel="stylesheet" type="text/css" href="styles/3-footer.css">
-<link rel="stylesheet" type="text/css" href="styles/6-filters.css">
-<link rel="icon" href="images/icon.png" />
-<title>HBnB</title>
+    <link rel="stylesheet" type="text/css" href="/web_flask/static/styles/4-common.css">
+    <link rel="stylesheet" type="text/css" href="/web_flask/static/styles/3-header.css">
+    <link rel="stylesheet" type="text/css" href="/web_flask/static/styles/3-footer.css">
+    <link rel="stylesheet" type="text/css" href="/web_flask/static/styles/6-filters.css">
+    <link rel="icon" href="/web_flask/static/images/icon.png" />
+    <title>HBnB</title>
 </head>
 
 <body>
-<header>
-    <div class="logo"></div>
-</header>
-<div class="container">
-    <section class="filters">
-        <div class="locations">
-            <h3>States</h3>
-            <h4>&nbsp;</h4>
-            <div class="popover">
-                <ul>
-                    <li>
-                    {% for state in states|sort(attribute='name') %}
-                    <h2>{{ state.name }}</h2>
+    <header>
+        <div class="logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
                     <ul>
-                        {% for city in states.cities|sort(attribute='name') %}
-                        <li>{{ city.name }}</li>
-                        {% endfor %}
+                        <li>
+                            {% for state in states|sort(attribute='name') %}
+                            <h2>{{ state.name }}</h2>
+                            <ul>
+                                {% for city in states.cities|sort(attribute='name') %}
+                                <li>{{ city.name }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <h2>California:</h2>
+                            <ul>
+                                <li>LA</li>
+                                <li>SF</li>
+                            </ul>
+                        </li>
                     </ul>
-                    {% endfor %}
-                    </li>
-                    <li>
-                    <h2>California:</h2>
+                </div>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4>
+                <div class="popover">
                     <ul>
-                        <li>LA</li>
-                        <li>SF</li>
+                        <li>Internet</li>
+                        <li>TV</li>
+                        <li>Kitchen</li>
+                        <li>Iron</li>
                     </ul>
-                    </li>
-                </ul>
+                </div>
             </div>
-        </div>
-        <div class="amenities">
-            <h3>Amenities</h3>
-            <h4>&nbsp;</h4>
-            <div class="popover">
-                <ul>
-                    <li>Internet</li>
-                    <li>TV</li>
-                    <li>Kitchen</li>
-                    <li>Iron</li>
-                </ul>
-            </div>
-        </div>
-        <button type="button">Search</button>
-    </section>
-</div>
-<footer>
-    <p>Holberton School</p>
-</footer>
+            <button type="button">Search</button>
+        </section>
+    </div>
+    <footer>
+        <p>Holberton School</p>
+    </footer>
 </body>
 
 </html>
