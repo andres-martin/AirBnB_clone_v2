@@ -4,7 +4,7 @@ from flask import Flask, escape, render_template
 from models import storage
 from models.base_model import os_type_storage
 
-from models.state import State
+import models
 app = Flask(__name__)
 
 
@@ -117,9 +117,12 @@ def hbnb_filters():
     '''
     if os_type_storage == 'db':
         states_objs = storage.all('State').values()
+        amenities = storage.all('Amenity').values()
     else:
-        states_objs = storage.all(State).values()
-    return render_template('10-hbnb_filters.html', states=states_objs)
+        states_objs = storage.all(models.state.State).values()
+        amenities = storage.all(models.state.Amenity).values()
+    return render_template('10-hbnb_filters.html', states=states_objs,
+                           amenities=amenities)
 
 
 @app.teardown_appcontext
