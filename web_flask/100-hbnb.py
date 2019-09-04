@@ -125,6 +125,27 @@ def hbnb_filters():
                            amenities=amenities)
 
 
+@app.route('/hbnb', strict_slashes=False)
+def hbnb_root():
+    ''' displays a list of all State
+        objects present in DBStorage
+        or FileStorage
+        sorted by name
+        renders an html template
+    '''
+    if os_type_storage == 'db':
+        states_objs = storage.all('State').values()
+        amenities = storage.all('Amenity').values()
+        places = storage.all('Place').values()
+        users = storage.all('User').values()
+    else:
+        states_objs = storage.all(models.state.State).values()
+        amenities = storage.all(models.amenity.Amenity).values()
+        places = storage.all(models.place.Place).values()
+        users = storage.all(models.user.User).values()
+    return render_template('100-hbnb.html', states=states_objs,
+                           amenities=amenities, places=places)
+
 @app.teardown_appcontext
 def close_session_db(exit):
     ''' remove the current SQLAlchemy Session '''
