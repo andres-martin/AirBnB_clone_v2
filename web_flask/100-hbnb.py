@@ -14,12 +14,6 @@ def hello_route():
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    ''' renders a message '''
-    return "HBNB"
-
-
 @app.route('/c/<text>', strict_slashes=False)
 def c_param(text):
     ''' renders a message with a q param '''
@@ -123,6 +117,26 @@ def hbnb_filters():
         amenities = storage.all(models.amenity.Amenity).values()
     return render_template('10-hbnb_filters.html', states=states_objs,
                            amenities=amenities)
+
+
+@app.route('/hbnb', strict_slashes=False)
+def hbnb_root():
+    ''' displays a list of all State
+        objects present in DBStorage
+        or FileStorage
+        sorted by name
+        renders an html template
+    '''
+    if os_type_storage == 'db':
+        states_objs = storage.all('State').values()
+        amenities = storage.all('Amenity').values()
+        places = storage.all('Place').values()
+    else:
+        states_objs = storage.all(models.state.State).values()
+        amenities = storage.all(models.amenity.Amenity).values()
+        places = storage.all(models.place.Place).values()
+    return render_template('100-hbnb.html', states=states_objs,
+                           amenities=amenities, places=places)
 
 
 @app.teardown_appcontext
