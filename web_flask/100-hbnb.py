@@ -14,12 +14,6 @@ def hello_route():
     return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
-def hbnb():
-    ''' renders a message '''
-    return "HBNB"
-
-
 @app.route('/c/<text>', strict_slashes=False)
 def c_param(text):
     ''' renders a message with a q param '''
@@ -137,14 +131,13 @@ def hbnb_root():
         states_objs = storage.all('State').values()
         amenities = storage.all('Amenity').values()
         places = storage.all('Place').values()
-        users = storage.all('User').values()
     else:
         states_objs = storage.all(models.state.State).values()
         amenities = storage.all(models.amenity.Amenity).values()
         places = storage.all(models.place.Place).values()
-        users = storage.all(models.user.User).values()
     return render_template('100-hbnb.html', states=states_objs,
                            amenities=amenities, places=places)
+
 
 @app.teardown_appcontext
 def close_session_db(exit):

@@ -58,7 +58,7 @@
 			<article>
 				<div class="title_box">
 					<h2>{{ place.name }}</h2>
-					<div class="price_by_night">$ {{ place.price_by_night }}</div>
+					<div class="price_by_night">${{ place.price_by_night }}</div>
 				</div>
 				<div class="information">
 					<div class="max_guest">{{ place.max_guest }} Guests</div>
@@ -69,46 +69,10 @@
 					<b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
 				</div>
 				<div class="description">
-					{{ place.description }}
+					{{ place.description|safe }}
 				</div>
 			</article>
 			{% endfor %}
-
-			<!-- <article>
-				<div class="title_box">
-					<h2>Tiny House</h2>
-					<div class="price_by_night">$69</div>
-				</div>
-				<div class="information">
-					<div class="max_guest">3 Guests</div>
-					<div class="number_rooms">1 Bedroom</div>
-					<div class="number_bathrooms">1 Bathroom</div>
-				</div>
-				<div class="user">
-					<b>Owner:</b> John Doe
-				</div>
-				<div class="description">
-					This house is John's personal hideout. It contains blood stained walls as a feature to the luxery
-					blury light.
-				</div>
-			</article>
-			<article>
-				<div class="title_box">
-					<h2>A Suite</h2>
-					<div class="price_by_night">$179</div>
-				</div>
-				<div class="information">
-					<div class="max_guest">4 Guests</div>
-					<div class="number_rooms">4 Bedroom</div>
-					<div class="number_bathrooms">4 Bathroom</div>
-				</div>
-				<div class="user">
-					<b>Owner:</b> Bob
-				</div>
-				<div class="description">
-					This house is a fine suite created by designer bob. Each room has it's own bathrooms
-				</div>
-			</article> -->
 		</section>
 	</div>
 	<footer>
