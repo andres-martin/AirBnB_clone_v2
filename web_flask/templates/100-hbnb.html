@@ -66,10 +66,10 @@
 					<div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom</div>
 				</div>
 				<div class="user">
-					<b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}
+                                    <span><strong>Owner:</strong> {{ place.user.first_name }} {{ place.user.last_name }}</span>
 				</div>
 				<div class="description">
-					{{ place.description|safe }}
+                                    <p>{{ place.description|safe }}</p>
 				</div>
 			</article>
 			{% endfor %}
